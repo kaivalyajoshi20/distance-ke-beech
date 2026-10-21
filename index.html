@@ -40,7 +40,7 @@ spice:{label:"Spice",truth:["What is intoxicating about my voice?","Which look o
 const spiceLevels={truth:["normal","normal","normal","normal","normal","normal","normal","normal","normal","mild","mild","mild","extreme","extreme","extreme","extreme","extreme","extreme","extreme","extreme"],dare:["normal","normal","normal","normal","normal","normal","normal","normal","normal","mild","mild","mild","extreme","extreme","extreme","extreme","extreme","extreme","extreme","extreme"]};
 const bonus={truth:"BONUS TRUTH: What is the most daring romantic wish you feel safe sharing with me tonight?",dare:"BONUS DARE: Send a 15-second private voice note or short video with your most heartfelt, flirty message. Make it personal and consensual."};
 let mode="love",players=[],scores=[0,0],turn=0,round=0,deck=[],type="truth",current=null,shown=false,timer=null,seconds=60,bonusSeen={truth:false,dare:false},usedIds=new Set();
-document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{document.querySelectorAll(".mode").forEach(x=>x.classList.remove("active"));b.classList.add("active");mode=b.dataset.mode});
+document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{document.querySelectorAll(".mode").forEach(x=>x.classList.toggle("active",x===b));mode=b.dataset.mode});
 function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function start(){players=[{name:$("n1").value.trim()||"Player 1",gender:$("g1").value},{name:$("n2").value.trim()||"Player 2",gender:$("g2").value}];scores=[0,0];turn=0;round=0;current=null;shown=false;bonusSeen={truth:false,dare:false};usedIds=new Set();deck=[];for(let t of ["truth","dare"])data[mode][t].forEach((text,i)=>deck.push({type:t,text,level:mode==="spice"?spiceLevels[t][i]:mode==="love"&&i>=17&&t==="truth"||mode==="love"&&i>=17&&t==="dare"?"mild":"normal",id:t+i}));deck=shuffle(deck);$("setup").classList.add("hidden");$("end").classList.add("hidden");$("game").classList.remove("hidden");$("heading").textContent=data[mode].label+" Mode";$("total").textContent=42;pick("truth");$("card").innerHTML='<div class="icon">♡</div><div class="type">Your next little secret</div><p class="prompt">Ready to get a little closer?</p><small>Choose Truth or Dare, then reveal your card.</small>';$("draw").textContent="Reveal a card";$("draw").dataset.shown="";update();renderScores();window.scrollTo({top:0,behavior:"smooth"})}
@@ -78,17 +78,18 @@ function connect(kind,code){
  socket.onmessage=e=>{let m;try{m=JSON.parse(e.data)}catch{return}
   if(m.type==="error"){status(m.message||"Something went wrong.");setButtonBusy(false);return}
   if(m.type==="created"||m.type==="joined"){roomCode=m.code;mySlot=m.slot;isHost=mySlot===0;online=true;$("joinCode").value=roomCode;status((isHost?"Room created!":"You joined the room!")+" Your code is "+roomCode+". Send this code to your partner.");return}
-  if(m.type==="room"){roomCode=m.code||roomCode;connectedSlots=m.players||[];const p0=connectedSlots[0],p1=connectedSlots[1];
+  if(m.type==="room"){roomCode=m.code||roomCode;connectedSlots=m.players||[];if(m.mode&&data[m.mode]){mode=m.mode;document.querySelectorAll(".mode").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));}const p0=connectedSlots[0],p1=connectedSlots[1];
    if(p0){$("n1").value=p0.name;$("g1").value=["Boy","Girl"].includes(p0.gender)?p0.gender:"Boy"}
    if(p1){$("n2").value=p1.name;$("g2").value=["Boy","Girl"].includes(p1.gender)?p1.gender:"Girl"}
    $("n1").readOnly=$("n2").readOnly=true;$("g1").disabled=$("g2").disabled=true;
-   document.querySelectorAll(".mode").forEach(b=>b.disabled=!isHost);
+   document.querySelectorAll(".mode").forEach(b=>b.disabled=false);
    $("start").disabled=!isHost;
    if(p0&&p1&&p0.connected&&p1.connected){$("onlinePanel").classList.add("hidden");$("setup").classList.remove("hidden");$("start").disabled=!isHost;$("start").textContent=isHost?"Start our little game ♡":"Waiting for "+p0.name+" to start…";const note=$("gameStatus");if(note)note.textContent=isHost?"Both players are connected. Tap Start our little game to begin.":"You are connected! The room creator will start the game.";status("Both connected! "+p0.name+" and "+p1.name+" are in the room.");}
    else { $("setup").classList.add("hidden");$("onlinePanel").classList.remove("hidden");status("Room "+roomCode+" is ready. Waiting for your partner to join with the code.");}
    if(m.state)applyState(m.state);
    return;
   }
+  if(m.type==="mode"&&data[m.mode]){mode=m.mode;document.querySelectorAll(".mode").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));return}
   if(m.type==="state"&&m.state){applyState(m.state)}
   if(m.type==="peer-left"){status("Your partner disconnected. Their place is saved while this room stays alive.");}
  };
@@ -116,11 +117,12 @@ function applyState(s){
  }finally{remoteApplying=false}
 }
 const originalStart=start;
-function startOnlineGame(){if(online){if(!isHost){const note=$("gameStatus");if(note)note.textContent="Only the room creator can start. Ask them to tap Start our little game.";return;}const p0=connectedSlots[0],p1=connectedSlots[1];if(!(p0&&p1&&p0.connected&&p1.connected)){const note=$("gameStatus");if(note)note.textContent="Waiting for both players to be connected. Keep both screens open and try again.";return;}}try{originalStart();if(online){broadcast();const note=$("gameStatus");if(note)note.textContent="Game started! Have fun together ♡";}}catch(err){console.error("Could not start game",err);const note=$("gameStatus");if(note)note.textContent="Could not start the game. Refresh both screens, create a new room, and reconnect.";}}
+function startOnlineGame(){if(online){const p0=connectedSlots[0],p1=connectedSlots[1];if(!isHost){status("You are connected. The room creator starts the game.");return;}if(!(p0&&p1&&p0.connected&&p1.connected)){status("Waiting for both players to connect. Keep both screens open.");return;}}try{originalStart();}catch(err){console.error("Could not start game",err);const message="Start failed: "+(err&&err.message?err.message:String(err));const note=$("gameStatus");if(note)note.textContent=message;status(message);return;}if(online){try{broadcast();status("Game started! Have fun together ♡");}catch(err){console.error("Game started but sync failed",err);status("Game started on this phone, but sync failed: "+(err&&err.message?err.message:String(err)));}}}
 start=startOnlineGame;
 $("start").onclick=startOnlineGame;
 $("createRoom").addEventListener("click",()=>connect("create"));
 $("joinRoom").addEventListener("click",()=>{const c=$("joinCode").value.trim().toUpperCase();if(c.length!==6){status("Enter the six-character room code your partner sent.");return}connect("join",c)});
+document.querySelectorAll(".mode").forEach(b=>b.addEventListener("click",()=>{if(!online)return;mode=b.dataset.mode;send({type:"mode",mode});}));
 $("joinCode").addEventListener("input",e=>e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,6));
 $("truth").onclick=()=>{if(online&&turn!==mySlot)return;pick("truth");broadcast()};
 $("dare").onclick=()=>{if(online&&turn!==mySlot)return;pick("dare");broadcast()};
