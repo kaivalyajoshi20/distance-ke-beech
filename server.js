@@ -32,7 +32,7 @@ function roster(room) {
   return room.players.map((p, i) => p ? { name: p.name, gender: p.gender, connected: !!room.clients[i] } : null);
 }
 function broadcastRoom(room) {
-  const msg = { type: "room", code: room.code, players: roster(room), state: room.state };
+  const msg = { type: "room", code: room.code, players: roster(room), state: room.state, mode: room.mode };
   room.clients.forEach(ws => send(ws, msg));
 }
 function error(ws, message) { send(ws, { type: "error", message }); }
@@ -50,7 +50,7 @@ wss.on("connection", ws => {
       if (ws.roomCode) return error(ws, "This connection is already in a room.");
       let id;
       do { id = code(); } while (rooms.has(id));
-      const room = { code: id, players: [null, null], clients: [null, null], state: null, updated: Date.now() };
+      const room = { code: id, players: [null, null], clients: [null, null], state: null, mode: "love", updated: Date.now() };
       room.players[0] = { name: safeName(msg.name), gender: safeName(msg.gender) };
       room.clients[0] = ws;
       rooms.set(id, room);
@@ -71,6 +71,16 @@ wss.on("connection", ws => {
       ws.roomCode = id; ws.slot = 1;
       send(ws, { type: "joined", code: id, slot: 1 });
       broadcastRoom(room);
+      return;
+    }
+    if (msg.type === "mode") {
+      const room = rooms.get(ws.roomCode);
+      if (!room || room.clients[ws.slot] !== ws) return error(ws, "You are no longer in this room.");
+      if (room.state && room.state.started) return error(ws, "The game has already started. Finish this round before changing mode.");
+      if (!["romance", "love", "spice"].includes(msg.mode)) return error(ws, "Unknown game mode.");
+      room.mode = msg.mode;
+      room.updated = Date.now();
+      room.clients.forEach(client => send(client, { type: "mode", mode: room.mode }));
       return;
     }
     if (msg.type === "state") {
