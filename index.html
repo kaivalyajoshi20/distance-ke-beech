@@ -84,7 +84,7 @@ function connect(kind,code){
    $("n1").readOnly=$("n2").readOnly=true;$("g1").disabled=$("g2").disabled=true;
    document.querySelectorAll(".mode").forEach(b=>b.disabled=!isHost);
    $("start").disabled=!isHost;
-   if(p0&&p1){$("onlinePanel").classList.add("hidden");$("setup").classList.remove("hidden");status("Both connected! "+p0.name+" and "+p1.name+" are in the room.");if(!isHost)$("start").textContent="Waiting for "+p0.name+" to start…";else $("start").textContent="Start our little game ♡"}
+   if(p0&&p1&&p0.connected&&p1.connected){$("onlinePanel").classList.add("hidden");$("setup").classList.remove("hidden");status("Both connected! "+p0.name+" and "+p1.name+" are in the room.");if(!isHost)$("start").textContent="Waiting for "+p0.name+" to start…";else $("start").textContent="Start our little game ♡"}
    else { $("setup").classList.add("hidden");$("onlinePanel").classList.remove("hidden");status("Room "+roomCode+" is ready. Waiting for your partner to join with the code.");}
    if(m.state)applyState(m.state);
    return;
@@ -98,7 +98,7 @@ function broadcast(){if(online&&!remoteApplying)send({type:"state",state:snapsho
 function applyState(s){
  if(!s)return;remoteApplying=true;
  try{
-  if(s.mode)mode=s.mode;if(Array.isArray(s.players)&&s.players.length===2)players=s.players;
+  if(s.mode){mode=s.mode;document.querySelectorAll(".mode").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));}if(Array.isArray(s.players)&&s.players.length===2)players=s.players;
   if(Array.isArray(s.scores))scores=s.scores;turn=Number(s.turn)||0;round=Number(s.round)||0;
   if(Array.isArray(s.deck))deck=s.deck;if(s.type)type=s.type;current=s.current||null;shown=!!s.shown;
   bonusSeen=s.bonusSeen||{truth:false,dare:false};usedIds=new Set(s.usedIds||[]);
@@ -111,7 +111,7 @@ function applyState(s){
    if(shown&&current){render(current);if(current.level==="bonus"&&typeof s.seconds==="number"){seconds=Math.max(0,s.seconds);const t=$("timer");if(t)t.innerHTML="Time left: <b>"+seconds+"</b>s"}}
    else {$("card").innerHTML='<div class="icon">♡</div><div class="type">Your next little secret</div><p class="prompt">Ready for another?</p><small>Choose Truth or Dare, then reveal your card.</small>';$("draw").textContent="Reveal a card";$("draw").dataset.shown=""}
    const myTurn=turn===mySlot;$("draw").disabled=!myTurn;$("pass").disabled=!myTurn;
-   $("truth").disabled=!myTurn;$("dare").disabled=!myTurn;
+   $("truth").disabled=!(myTurn&&!shown);$("dare").disabled=!(myTurn&&!shown);
   }
  }finally{remoteApplying=false}
 }
