@@ -3,9 +3,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0d0509;--panel:#1f0c16;--pink:#ff2d55;--wine:#c9184a;--gold:#ffb703;--text:#fff0f5;--muted:#ffb3c6;--line:#ffffff20}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0,#451326,transparent 45%),radial-gradient(ellipse at 100% 90%,#350b20,transparent 40%),var(--bg);color:var(--text);font:15px Poppins,sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;background-image:radial-gradient(#ff668a 1px,transparent 1px);background-size:65px 75px}header,main,footer{width:min(920px,92%);margin:auto;position:relative}header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}.brand{font-family:"Playfair Display",serif;letter-spacing:.08em}.brand span,h1 em{color:var(--pink)}.pill,.stat{border:1px solid var(--line);border-radius:99px;padding:8px 12px;color:var(--muted);font-size:.72rem;background:#170811}.hero{text-align:center;padding:36px 0 26px}.eyebrow{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}h1{font:500 clamp(2.6rem,8vw,5rem)/1.06 "Playfair Display",serif;margin:15px 0}h1 em{font-style:normal}.hero p,.subtle{color:#d4a5b5;line-height:1.8;max-width:600px;margin:0 auto}.panel{background:linear-gradient(145deg,#2c0f1deF,#14070ef5);border:1px solid var(--line);border-radius:24px;padding:clamp(18px,4vw,32px);margin:18px 0;box-shadow:0 25px 60px #0009;backdrop-filter:blur(12px)}h2{font:600 1.6rem "Playfair Display",serif;margin:0 0 9px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field label{display:block;color:#f5c3d1;font-size:.78rem;margin:0 0 7px}.field input,.field select{width:100%;padding:13px;background:#10060c;color:var(--text);border:1px solid #ffffff2b;border-radius:12px;font:inherit}.label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:23px 0 11px}.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.mode{cursor:pointer;text-align:left;padding:16px;border-radius:16px;background:#10060c88;color:var(--text);border:1px solid var(--line);transition:.2s}.mode b{display:block;font:600 1.15rem "Playfair Display",serif;margin:5px 0}.mode small{color:#d1a2b1;line-height:1.5}.mode.active{border-color:var(--pink);box-shadow:0 0 28px #ff2d5533;background:#ff2d5518}.btn{border:0;border-radius:99px;padding:13px 20px;color:white;font:600 .9rem Poppins,sans-serif;cursor:pointer;background:linear-gradient(100deg,var(--pink),var(--wine));transition:.2s;box-shadow:0 8px 24px #c9184a33}.btn:hover{transform:scale(1.03);box-shadow:0 0 30px #ff2d5559}.btn.alt{background:#29101c;border:1px solid var(--line);box-shadow:none}.btn.gold{background:linear-gradient(90deg,var(--gold),#ff006e);color:#260913}.full{width:100%;margin-top:22px}.hidden{display:none!important}.note{text-align:center;font-size:.74rem;color:#b98b9a;line-height:1.7;margin-top:18px}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.stats{display:flex;gap:8px;flex-wrap:wrap}.stat{color:#f8c4d2}.progress{height:4px;background:#32101f;border-radius:9px;margin:22px 0;overflow:hidden}.progress div{height:100%;background:linear-gradient(90deg,var(--pink),var(--gold));width:0;transition:.3s}.turn{text-align:center;color:var(--muted);margin:14px 0}.choice{display:flex;justify-content:center;gap:10px;margin-bottom:18px}.choice .selected{outline:2px solid var(--pink);outline-offset:2px}.card{min-height:345px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;border:1px solid #ffb3c633;border-radius:25px;padding:30px;background:linear-gradient(150deg,#30101f,#160811 70%);box-shadow:0 25px 60px #0009;animation:reveal .4s ease}.card:before{content:"";position:absolute;inset:10px;border:1px solid #ffb3c31a;border-radius:18px;pointer-events:none}.icon{font-size:2rem;margin-bottom:10px}.type{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}.badge{margin:13px 0;padding:6px 11px;border-radius:99px;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;background:#ff2d5524;border:1px solid #ff2d5555;color:#ff9bb4}.badge.mild{color:#ffd36a;border-color:#ffb70355}.badge.extreme{color:#ff73ad;border-color:#ff006e66}.badge.bonus{color:#ffd66d;border-color:var(--gold)}.prompt{font:500 clamp(1.45rem,4.5vw,2.1rem)/1.45 "Playfair Display",serif;max-width:560px;margin:5px 0 15px}.card small{color:#cba2af;line-height:1.7;max-width:460px}.timer{color:#ffd36a;margin-top:12px}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0}.scores{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}.score{padding:14px;border:1px solid var(--line);border-radius:15px;background:#10060c}.score small{color:var(--muted)}.points{font:2rem "Playfair Display",serif;margin:4px 0}.result{text-align:center;padding:12px}.result h2{font-size:clamp(2rem,6vw,3.2rem);color:var(--muted)}footer{text-align:center;padding:8px 0 25px;color:#805667;font-size:.72rem}.cookie{position:fixed;bottom:14px;left:14px;right:14px;max-width:680px;margin:auto;z-index:4;background:#190811f7;border:1px solid #ffffff30;border-radius:16px;padding:15px;display:flex;gap:14px;align-items:center;box-shadow:0 12px 50px #000b}.cookie p{flex:1;font-size:.74rem;line-height:1.6;color:#d7a9b7;margin:0}.heart{position:fixed;bottom:-25px;z-index:0;pointer-events:none;color:#ff668a;animation:float 11s linear forwards}@keyframes reveal{from{opacity:0;transform:rotateY(-10deg) translateY(8px)}to{opacity:1;transform:none}}@keyframes float{to{transform:translateY(-110vh) rotate(15deg);opacity:0}}@media(max-width:620px){header{padding-top:16px}.hero{padding:25px 0}.grid,.modes{grid-template-columns:1fr}.mode{display:block}.card{min-height:380px;padding:25px 18px}.cookie{flex-direction:column;align-items:stretch}.cookie .btn{width:100%}.pill{font-size:.62rem}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+#onlinePanel .online-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.online-status{margin:14px 0 0;padding:12px;border:1px solid #ffb3c633;border-radius:12px;background:#10060c;color:#ffd8e3;line-height:1.7;overflow-wrap:anywhere}
+.room-code{font:700 2rem "Playfair Display",serif;letter-spacing:.22em;color:var(--gold);text-align:center;padding:10px}
+@media(max-width:620px){#onlinePanel .online-row{grid-template-columns:1fr}}
 </style></head><body>
 <header><div class="brand">DISTANCE <span>KE BEECH</span></div><div class="pill">♡ Made for two, miles apart</div></header>
 <main><section class="hero"><div class="eyebrow">A private little world for two</div><h1>Distance Ke Beech<br><em>Lust &amp; Love</em></h1><p>Two screens. One spark. Take turns asking, daring, blushing, and getting closer — even when miles stand between you.</p></section>
+<section id="onlinePanel" class="panel">
+<h2>Play together, miles apart ♡</h2>
+<p class="subtle">Create a private room and send your six-character code to your partner. You’ll see the same cards, turns, and scores live.</p>
+<div class="online-row">
+<div class="field"><label for="onlineName">Your name</label><input id="onlineName" maxlength="24" placeholder="Your name"></div>
+<div class="field"><label for="onlineGender">Your perspective</label><select id="onlineGender"><option>Boy</option><option>Girl</option><option>Prefer not to say</option></select></div>
+</div>
+<div class="actions"><button class="btn" id="createRoom">Create a room ♡</button></div>
+<div class="label">Already have a room code?</div>
+<div class="online-row"><div class="field"><label for="joinCode">Room code</label><input id="joinCode" maxlength="6" placeholder="ABC123" autocomplete="off"></div><div class="field" style="display:flex;align-items:end"><button class="btn alt" id="joinRoom" style="width:100%">Join your partner</button></div></div>
+<div class="online-status" id="onlineStatus" aria-live="polite">Both of you open this website on your own phones. One creates a room; the other enters the code.</div>
+<p class="note">Room messages and game state travel through the live server. Don’t share your code publicly. Rooms are temporary and may reset when the server restarts. No intimate photos or videos are uploaded by this game.</p>
+</section>
 <section id="setup" class="panel"><h2>First, who's playing?</h2><p class="subtle">Choose your names, perspectives, and mood. Every prompt is optional; a pass is always okay.</p>
 <div class="grid" style="margin-top:22px"><div class="field"><label for="n1">Player 1 name</label><input id="n1" maxlength="24" placeholder="e.g. Aarav"></div><div class="field"><label for="g1">Player 1 gender</label><select id="g1"><option>Boy</option><option>Girl</option></select></div><div class="field"><label for="n2">Player 2 name</label><input id="n2" maxlength="24" placeholder="e.g. Meera"></div><div class="field"><label for="g2">Player 2 gender</label><select id="g2"><option>Girl</option><option>Boy</option></select></div></div>
 <div class="label">Choose your mood</div><div class="modes"><button class="mode" data-mode="romance"><span>🌹</span><b>Romance</b><small>Soft, sweet, heart-melting.</small></button><button class="mode active" data-mode="love"><span>💋</span><b>Love</b><small>Romantic with a little spark.</small></button><button class="mode" data-mode="spice"><span>🔥</span><b>Spice</b><small>Bold, teasing, very intimate.</small></button></div><button class="btn full" id="start">Start our little game ♡</button><p class="note">For adults in a consenting relationship. Use only a video call, voice note, photo, or short video. Never share or save intimate media without explicit permission.</p></section>
@@ -38,4 +56,79 @@ function finish(){stopTimer();$("game").classList.add("hidden");$("end").classLi
 $("start").onclick=start;$("draw").onclick=draw;$("pass").onclick=()=>{stopTimer();shown=false;current=null;$("draw").dataset.shown="";$("draw").textContent="Reveal a card";if(round>=42){finish();return}turn=1-turn;update();$("card").innerHTML='<div class="icon">♡</div><div class="type">No pressure</div><p class="prompt">A pass is always okay.</p><small>Check in with each other and choose another whenever ready.</small>'};$("again").onclick=start;$("edit").onclick=()=>{$("end").classList.add("hidden");$("setup").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})};
 setInterval(()=>{if(Math.random()>.55)return;let h=document.createElement("span");h.className="heart";h.textContent=Math.random()>.5?"♡":"♥";h.style.left=Math.random()*100+"vw";h.style.fontSize=(12+Math.random()*12)+"px";document.body.append(h);setTimeout(()=>h.remove(),11000)},1300);
 try{if(localStorage.getItem("dkb-cookie")==="yes")$("cookie").classList.add("hidden");else $("cookie").classList.remove("hidden")}catch(e){$("cookie").classList.remove("hidden")} $("accept").onclick=()=>{try{localStorage.setItem("dkb-cookie","yes")}catch(e){}$("cookie").classList.add("hidden")};
-</script></body></html>
+</script>
+<script>
+/* Live two-player rooms */
+(()=>{
+const SERVER="wss://distance-ke-beech-live.onrender.com";
+const $=id=>document.getElementById(id);
+let socket=null,roomCode="",mySlot=-1,isHost=false,online=false,connectedSlots=[],remoteApplying=false;
+const status=(s)=>{const el=$("onlineStatus");if(el)el.textContent=s};
+const send=(obj)=>{if(socket&&socket.readyState===WebSocket.OPEN)socket.send(JSON.stringify(obj))};
+const setButtonBusy=(busy)=>{["createRoom","joinRoom"].forEach(id=>$(id).disabled=busy)};
+function connect(kind,code){
+ if(socket)try{socket.close()}catch(e){}
+ const name=$("onlineName").value.trim()||"Sweetheart";
+ const gender=$("onlineGender").value;
+ status("Connecting securely to the room server…");setButtonBusy(true);
+ try{socket=new WebSocket(SERVER)}catch(e){status("Could not connect. Please try again in a moment.");setButtonBusy(false);return}
+ socket.onopen=()=>send({type:kind,code,name,gender});
+ socket.onerror=()=>{status("Connection failed. Please try again later.");setButtonBusy(false)};
+ socket.onclose=()=>{setButtonBusy(false);if(online)status("You got disconnected. Refresh and create/join the room again.")};
+ socket.onmessage=e=>{let m;try{m=JSON.parse(e.data)}catch{return}
+  if(m.type==="error"){status(m.message||"Something went wrong.");setButtonBusy(false);return}
+  if(m.type==="created"||m.type==="joined"){roomCode=m.code;mySlot=m.slot;isHost=mySlot===0;online=true;$("joinCode").value=roomCode;status((isHost?"Room created!":"You joined the room!")+" Your code is "+roomCode+". Send this code to your partner.");return}
+  if(m.type==="room"){roomCode=m.code||roomCode;connectedSlots=m.players||[];const p0=connectedSlots[0],p1=connectedSlots[1];
+   if(p0){$("n1").value=p0.name;$("g1").value=["Boy","Girl"].includes(p0.gender)?p0.gender:"Boy"}
+   if(p1){$("n2").value=p1.name;$("g2").value=["Boy","Girl"].includes(p1.gender)?p1.gender:"Girl"}
+   $("n1").readOnly=$("n2").readOnly=true;$("g1").disabled=$("g2").disabled=true;
+   document.querySelectorAll(".mode").forEach(b=>b.disabled=!isHost);
+   $("start").disabled=!isHost;
+   if(p0&&p1){$("onlinePanel").classList.add("hidden");$("setup").classList.remove("hidden");status("Both connected! "+p0.name+" and "+p1.name+" are in the room.");if(!isHost)$("start").textContent="Waiting for "+p0.name+" to start…";else $("start").textContent="Start our little game ♡"}
+   else { $("setup").classList.add("hidden");$("onlinePanel").classList.remove("hidden");status("Room "+roomCode+" is ready. Waiting for your partner to join with the code.");}
+   if(m.state)applyState(m.state);
+   return;
+  }
+  if(m.type==="state"&&m.state){applyState(m.state)}
+  if(m.type==="peer-left"){status("Your partner disconnected. Their place is saved while this room stays alive.");}
+ };
+}
+function snapshot(){return {mode,players,scores,turn,round,deck,type,current,shown,bonusSeen,usedIds:Array.from(usedIds),finished:$("end")&&!$("end").classList.contains("hidden"),started:$("game")&&!$("game").classList.contains("hidden"),seconds}}
+function broadcast(){if(online&&!remoteApplying)send({type:"state",state:snapshot()})}
+function applyState(s){
+ if(!s)return;remoteApplying=true;
+ try{
+  if(s.mode)mode=s.mode;if(Array.isArray(s.players)&&s.players.length===2)players=s.players;
+  if(Array.isArray(s.scores))scores=s.scores;turn=Number(s.turn)||0;round=Number(s.round)||0;
+  if(Array.isArray(s.deck))deck=s.deck;if(s.type)type=s.type;current=s.current||null;shown=!!s.shown;
+  bonusSeen=s.bonusSeen||{truth:false,dare:false};usedIds=new Set(s.usedIds||[]);
+  $("heading").textContent=(data[mode]||data.love).label+" Mode";$("total").textContent="42";
+  if(s.started){$("setup").classList.add("hidden");$("onlinePanel").classList.add("hidden");$("end").classList.add("hidden");$("game").classList.remove("hidden");}
+  else $("game").classList.add("hidden");
+  if(s.finished){$("game").classList.add("hidden");$("end").classList.remove("hidden");let max=Math.max(...scores),w=players.filter((p,i)=>scores[i]===max);$("winner").textContent=w.length===2?"It's a tie — equally irresistible ♡":w[0].name+" takes the crown!";$("summary").textContent="You both played together from a distance. Best score: "+max+" points.";$("finalScores").innerHTML=players.map((p,i)=>'<div class="score"><small>'+esc(p.name)+'</small><div class="points">'+scores[i]+'</div><small>points</small></div>').join("");}
+  else if(s.started){
+   pick(type);update();renderScores();
+   if(shown&&current){render(current);if(current.level==="bonus"&&typeof s.seconds==="number"){seconds=Math.max(0,s.seconds);const t=$("timer");if(t)t.innerHTML="Time left: <b>"+seconds+"</b>s"}}
+   else {$("card").innerHTML='<div class="icon">♡</div><div class="type">Your next little secret</div><p class="prompt">Ready for another?</p><small>Choose Truth or Dare, then reveal your card.</small>';$("draw").textContent="Reveal a card";$("draw").dataset.shown=""}
+   const myTurn=turn===mySlot;$("draw").disabled=!myTurn;$("pass").disabled=!myTurn;
+   $("truth").disabled=!myTurn;$("dare").disabled=!myTurn;
+  }
+ }finally{remoteApplying=false}
+}
+const originalStart=start;
+start=function(){if(online&&!isHost)return;originalStart();broadcast()};
+$("start").onclick=start;
+$("createRoom").addEventListener("click",()=>connect("create"));
+$("joinRoom").addEventListener("click",()=>{const c=$("joinCode").value.trim().toUpperCase();if(c.length!==6){status("Enter the six-character room code your partner sent.");return}connect("join",c)});
+$("joinCode").addEventListener("input",e=>e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,6));
+$("truth").onclick=()=>{if(online&&turn!==mySlot)return;pick("truth");broadcast()};
+$("dare").onclick=()=>{if(online&&turn!==mySlot)return;pick("dare");broadcast()};
+$("draw").onclick=()=>{if(online&&turn!==mySlot)return;draw();broadcast()};
+$("pass").onclick=()=>{if(online&&turn!==mySlot)return;stopTimer();shown=false;current=null;$("draw").dataset.shown="";$("draw").textContent="Reveal a card";if(round>=42){finish();broadcast();return}turn=1-turn;update();$("card").innerHTML='<div class="icon">♡</div><div class="type">No pressure</div><p class="prompt">A pass is always okay.</p><small>Check in with each other and choose another whenever ready.</small>';broadcast()};
+const oldFinish=finish;
+finish=function(){oldFinish();broadcast()};
+$("again").onclick=()=>{if(online&&!isHost){status("Ask the room creator to start a new round.");return}start()};
+$("edit").onclick=()=>{if(online){status("Refresh to leave this room and set up a new one.");return}$("end").classList.add("hidden");$("setup").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})};
+})();
+</script>
+</body></html>
