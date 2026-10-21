@@ -94,7 +94,7 @@ function connect(kind,code){
  };
 }
 function snapshot(){return {mode,players,scores,turn,round,deck,type,current,shown,bonusSeen,usedIds:Array.from(usedIds),finished:$("end")&&!$("end").classList.contains("hidden"),started:$("game")&&!$("game").classList.contains("hidden"),seconds}}
-function broadcast(){if(online&&!remoteApplying)send({type:"state",state:snapshot()})}
+function broadcast(){if(online&&!remoteApplying){send({type:"state",state:snapshot()});const myTurn=turn===mySlot;$("draw").disabled=!myTurn;$("pass").disabled=!myTurn;$("truth").disabled=!(myTurn&&!shown);$("dare").disabled=!(myTurn&&!shown)}}
 function applyState(s){
  if(!s)return;remoteApplying=true;
  try{
