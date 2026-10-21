@@ -1,0 +1,13 @@
+{
+  "name": "distance-ke-beech-live",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WebSocket room server for Distance Ke Beech multiplayer",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
